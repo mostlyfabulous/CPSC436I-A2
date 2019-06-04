@@ -11,6 +11,7 @@ export const addMessage = message => {
     type: 'MESSAGE_ADD',
     payload: {
       id: nextId++,
+      timestamp: JSON.stringify(new Date()),
       message
     }
   };
@@ -22,3 +23,10 @@ export const delMessage = messageId => {
     payload: messageId
   };
 };
+
+export const selMessage = message => {
+  return {
+    type: 'MESSAGE_SEL',
+    payload: message
+  }
+}

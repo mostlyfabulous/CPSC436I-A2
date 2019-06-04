@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Message from './Message';
-import ButtonInc from './ButtonInc'
 import AppendMessage from './ButtonAddMsg';
+import MessageDetail from './MessageDetail';
 import { connect } from 'react-redux';
 import { delMessage } from '../actions';
 // import './App.css';
@@ -10,7 +10,10 @@ class MessageList extends React.Component {
   render() {
     const msgs = this.props.messages;
     const listMessages = msgs.map((msg) => {
-        return <Message key={msg.id} delKey={msg.id} value={msg.text}
+        return <Message key={msg.id}
+          delKey={msg.id}
+          value={msg.text}
+          timestamp={msg.timestamp}
           />;
       }
     );
@@ -30,10 +33,10 @@ class App extends Component {
       <div className="App">
         <div className="App-header">
           <h2>Welcome to the Assignment 2<br></br>Message Board</h2>
-
         </div>
         <div id="container-div">
           <AppendMessage/>
+          <MessageDetail message={this.props.selectedMessage} />
         </div>
         <div className="Messages">
             <MessageList messages={this.props.messages}/>
@@ -45,7 +48,9 @@ class App extends Component {
 }
 
 const mapStateToProps = (state) => {
-  return { messages: state.messages };
+  return { messages: state.messages,
+           selectedMessage: state.detailedMessage
+   };
 }
 
 export default connect(mapStateToProps, {delMessage})(App);

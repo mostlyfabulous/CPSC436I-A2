@@ -106,6 +106,14 @@ a:link:hover{
   float: right;
 }
 
+table, th, td{
+  border: 1px solid #261C15;
+  border-collapse: collapse;
+  border-spacing: 0.3rem;
+  padding: 0.3rem;
+  background-color: #F7F7F2;
+}
+
 li:hover {
   background-color: #C5D86D;
   opacity: 0.6;

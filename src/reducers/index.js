@@ -6,16 +6,29 @@ const counterReducer = (count = 0, action) => {
   }
   return count;
 }
+
+const detailedMessageReducer = (detailedMessage = {}, action) => {
+  if (action.type === 'MESSAGE_SEL') {
+    // console.log(action.payload);
+    return detailedMessage = action.payload;
+  }
+  return detailedMessage;
+}
+
 const initialMessages = [
-  {id: 1, text: "This is the first post"},
-  {id: 2, text: "This is the second post"},
-  {id: 3, text: "This is the third post"}
+  {id: 1, text: "This is the first post", timestamp: JSON.stringify(new Date())},
+  {id: 2, text: "This is the second post", timestamp: JSON.stringify(new Date())},
+  {id: 3, text: "This is the third post", timestamp: JSON.stringify(new Date())}
 ];
 
 const messageReducer = (messages = initialMessages, action) => {
   if (action.type === 'MESSAGE_ADD') {
     // adds message to store
-    return [...messages, {id:action.payload.id, text: action.payload.message}];
+    return [...messages, {
+      id:action.payload.id,
+      text: action.payload.message,
+      timestamp: action.payload.timestamp
+    }];
   }
   else if (action.type === 'MESSAGE_DEL') {
     return messages.filter( ({ id }) => id !== action.payload);
@@ -25,17 +38,6 @@ const messageReducer = (messages = initialMessages, action) => {
 
 export default combineReducers({
   count: counterReducer,
-  messages: messageReducer
+  messages: messageReducer,
+  detailedMessage: detailedMessageReducer
 });
-
-// const todos = (state = [], action) => {
-//   switch (action.type) {
-//     case 'ADD_TODO':
-//       return [
-//         ...state,
-//         {
-//           id: action.id,
-//           text: action.text,
-//           completed: false
-//         }
-//       ]
