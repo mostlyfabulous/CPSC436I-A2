@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import Button from './Button';
 // import './App.css';
 
 class MessageList extends React.Component {
@@ -78,6 +78,7 @@ class App extends Component {
         </div>
         <div id="container-div">
           <TextArea/>
+          <Button/>
         </div>
         <div className="Messages">
             <MessageList messages={initialMessages}/>
