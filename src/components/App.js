@@ -1,26 +1,25 @@
 import React, { Component } from 'react';
-import Button from './Button';
+import ButtonInc from './ButtonInc'
+import AppendMessage from './ButtonAddMsg';
+import { connect } from 'react-redux';
 // import './App.css';
 
 class MessageList extends React.Component {
-  constructor(props) {
-    super(props);
+  render() {
     const msgs = this.props.messages;
     const listMessages = msgs.map((msg) => {
-      return <Message key={msg.id} value={msg.text} />;
-        }
-      );
-    this.state = {value: listMessages}
-    };
-  render() {
-      return(
-        <div>
-          <h2>Message List</h2>
-          <ul>{this.state.value}</ul>
-        </div>
-      );
-    }
+        return <Message key={msg.id} value={msg.text} />;
+      }
+    );
+    console.log(msgs);
+    return(
+      <div>
+        <h2>Message List</h2>
+        <ul>{listMessages}</ul>
+      </div>
+    );
   }
+}
 
 class Message extends React.Component {
   render() {
@@ -64,11 +63,6 @@ class TextArea extends React.Component {
 
 class App extends Component {
   render() {
-    const initialMessages = [
-    {id: 1, text: "This is the first post"},
-    {id: 2, text: "This is the second post"},
-    {id: 3, text: "This is the third post"}
-  ];
   // <img src={logo} className="App-logo" alt="logo" />
     return (
       <div className="App">
@@ -77,11 +71,11 @@ class App extends Component {
 
         </div>
         <div id="container-div">
-          <TextArea/>
-          <Button/>
+          <AppendMessage/>
+          <ButtonInc/>
         </div>
         <div className="Messages">
-            <MessageList messages={initialMessages}/>
+            <MessageList messages={this.props.messages}/>
         </div>
       </div>
 
@@ -89,5 +83,8 @@ class App extends Component {
   }
 }
 
+const mapStateToProps = (state) => {
+  return { messages: state.messages };
+}
 
-export default App;
+export default connect(mapStateToProps)(App);
