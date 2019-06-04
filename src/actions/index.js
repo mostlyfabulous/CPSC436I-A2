@@ -4,7 +4,8 @@ export const incrementMsgCount = count => {
     payload: count
   };
 };
-let nextId = 5
+
+let nextId = 4;
 export const addMessage = message => {
   return {
     type: 'MESSAGE_ADD',
@@ -12,5 +13,12 @@ export const addMessage = message => {
       id: nextId++,
       message
     }
+  };
+};
+
+export const delMessage = messageId => {
+  return {
+    type: 'MESSAGE_DEL',
+    payload: messageId
   };
 };

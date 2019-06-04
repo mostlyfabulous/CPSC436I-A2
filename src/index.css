@@ -99,6 +99,13 @@ a:link:hover{
   width: 90%;
 }
 
+.delete {
+  color: red;
+  font-weight: bolder;
+  opacity: 0.6;
+  float: right;
+}
+
 li:hover {
   background-color: #C5D86D;
   opacity: 0.6;

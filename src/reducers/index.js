@@ -9,14 +9,16 @@ const counterReducer = (count = 0, action) => {
 const initialMessages = [
   {id: 1, text: "This is the first post"},
   {id: 2, text: "This is the second post"},
-  {id: 3, text: "This is the third post"},
-  {id: 4, text: "Please"}
+  {id: 3, text: "This is the third post"}
 ];
 
 const messageReducer = (messages = initialMessages, action) => {
   if (action.type === 'MESSAGE_ADD') {
     // adds message to store
     return [...messages, {id:action.payload.id, text: action.payload.message}];
+  }
+  else if (action.type === 'MESSAGE_DEL') {
+    return messages.filter( ({ id }) => id !== action.payload);
   }
   return messages;
 }
