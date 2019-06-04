@@ -106,12 +106,27 @@ a:link:hover{
   float: right;
 }
 
-table, th, td{
+table, th, td {
   border: 1px solid #261C15;
   border-collapse: collapse;
   border-spacing: 0.3rem;
   padding: 0.3rem;
   background-color: #F7F7F2;
+  text-align: center;
+}
+
+/* Keeps width of columns even
+th, td {
+  width: 33%
+} */
+
+tr {
+  height: 2rem;
+}
+
+table {
+  margin: auto;
+  width: 95%;
 }
 
 li:hover {

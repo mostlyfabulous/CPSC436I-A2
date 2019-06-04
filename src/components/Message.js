@@ -7,7 +7,6 @@ class Message extends React.Component {
     return <div>
       <li onClick={ () =>
           {this.props.selMessage(this.props);
-            console.log(this.props);
           }
         }
 

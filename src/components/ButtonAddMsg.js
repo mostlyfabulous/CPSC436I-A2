@@ -19,7 +19,6 @@ class AppendMessage extends React.Component {
   // adds message to <ul> message list
   handleSubmit(event) {
     this.props.addMessage(this.state.value);
-    // console.log(this.props.messages);
     event.preventDefault();
   }
 
