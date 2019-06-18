@@ -1,4 +1,6 @@
 import { combineReducers } from 'redux';
+import messageAPIReducer from './messageAPIReducer';
+
 
 const counterReducer = (count = 0, action) => {
   if (action.type === 'MESSAGE_COUNTER') {
@@ -16,9 +18,9 @@ const detailedMessageReducer = (detailedMessage = {}, action) => {
 }
 
 const initialMessages = [
-  {id: 1, text: "This is the first post", timestamp: JSON.stringify(new Date())},
-  {id: 2, text: "This is the second post", timestamp: JSON.stringify(new Date())},
-  {id: 3, text: "This is the third post", timestamp: JSON.stringify(new Date())}
+  // {id: 1, text: "This is the first post", timestamp: JSON.stringify(new Date())},
+  // {id: 2, text: "This is the second post", timestamp: JSON.stringify(new Date())},
+  // {id: 3, text: "This is the third post", timestamp: JSON.stringify(new Date())}
 ];
 
 const messageReducer = (messages = initialMessages, action) => {
@@ -39,5 +41,6 @@ const messageReducer = (messages = initialMessages, action) => {
 export default combineReducers({
   count: counterReducer,
   messages: messageReducer,
-  detailedMessage: detailedMessageReducer
+  detailedMessage: detailedMessageReducer,
+  messagesAPI: messageAPIReducer
 });
