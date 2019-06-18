@@ -26,7 +26,7 @@ class ReplyBox extends React.Component {
 
   render() {
       return <form className="replybox" id="container-div">
-        <h3 id="instruction">Compose Message</h3>
+        <h3 id="instruction">Compose Reply</h3>
         <textarea
           id="message"
           onChange={this.handleChange}
