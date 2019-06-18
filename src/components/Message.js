@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { delMessage, selMessage } from '../actions';
+import { selMessage } from '../actions';
+import { delMessage } from '../actions/messageActions';
 
 class Message extends React.Component {
   render() {

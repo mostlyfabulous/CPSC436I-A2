@@ -29,4 +29,9 @@ router.post('/', function(req, res) {
   res.json(messages);
 });
 
+router.delete('/', function(req, res) {
+  messages = messages.filter( ({ id }) => id !== req.body.id);
+  res.json(messages);
+});
+
 module.exports = router;
