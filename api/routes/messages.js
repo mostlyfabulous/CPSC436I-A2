@@ -1,10 +1,11 @@
 var express = require('express');
 var router = express.Router();
 
+let nextId = 0;
 let messages = [
-  {id: 1, text: "This is the first post", timestamp: JSON.stringify(new Date())},
-  {id: 2, text: "This is the second post", timestamp: JSON.stringify(new Date())},
-  {id: 3, text: "This is the third post", timestamp: JSON.stringify(new Date())}
+  {id: nextId++, text: "This is the first post", timestamp: JSON.stringify(new Date())},
+  {id: nextId++, text: "This is the second post", timestamp: JSON.stringify(new Date())},
+  {id: nextId++, text: "This is the third post", timestamp: JSON.stringify(new Date())}
 ];
 
 router.get('/', function(req, res, next) {
@@ -13,12 +14,19 @@ router.get('/', function(req, res, next) {
 });
 
 router.post('/', function(req, res) {
-  console.log(req.body);
-  newMessage = req.body;
-  // users = users.concat(req.body); works
-  messages.push(newMessage);
+  // console.log(req);
+  if (req.body !== {}) {
+    newMessage = {
+      id: nextId++,
+      text: req.body.text,
+      timestamp: JSON.stringify(new Date())
+
+    };
+    // users = users.concat(req.body); works
+    messages.push(newMessage);
+  }
   // users = [...users, req.body]; also works
-  res.json(newMessage);
+  res.json(messages);
 });
 
 module.exports = router;

@@ -1,6 +1,6 @@
 import {
   FETCH_MESSAGES_BEGIN,
-  FETCH_MESSAGES_SUCESS,
+  FETCH_MESSAGES_SUCCESS,
   FETCH_MESSAGES_FAILURE,
 } from '../actions/messageActions';
 
@@ -21,7 +21,7 @@ export default function messageAPIReducer(state = initialState, action) {
         error: null
       };
 
-    case FETCH_MESSAGES_SUCESS:
+    case FETCH_MESSAGES_SUCCESS:
       // All done: set loading "false".
       // Also, replace the items with the ones from the server
       console.log(action.payload.messagesAPI);

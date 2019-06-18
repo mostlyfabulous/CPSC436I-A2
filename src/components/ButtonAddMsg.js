@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { addMessage } from '../actions';
+import { addMessage } from '../actions/messageActions';
 
 class AppendMessage extends React.Component {
   constructor(props) {
@@ -16,7 +16,7 @@ class AppendMessage extends React.Component {
   handleChange(event) {
     this.setState({value: event.target.value});
   }
-  // adds message to <ul> message list
+  // adds message to <ul> message list by posting to server
   handleSubmit(event) {
     this.props.addMessage(this.state.value);
     event.preventDefault();
