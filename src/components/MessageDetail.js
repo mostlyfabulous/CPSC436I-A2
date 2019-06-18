@@ -10,7 +10,7 @@ class MessageDetail extends React.Component {
         <tr><th>Message ID</th><th>Message Contents</th><th>UTC Timestamp</th></tr>
         </thead>
         <tbody>
-        <tr><td>{msg.delKey}</td><td>{msg.value}</td><td>{msg.timestamp}</td>
+        <tr><td>{msg.id}</td><td>{msg.text}</td><td>{msg.timestamp}</td>
         </tr>
         </tbody>
       </table>

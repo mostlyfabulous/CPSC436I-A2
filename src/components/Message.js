@@ -1,12 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { selMessage } from '../actions';
-import { delMessage } from '../actions/messageActions';
+// import { selMessage } from '../actions';
+import { selMessage, delMessage } from '../actions/messageActions';
 
 class Message extends React.Component {
   render() {
     return <div>
-      <li onClick={ () =>
+      <li onClick={ (e) =>
           {this.props.selMessage(this.props);
           }
         }
@@ -14,8 +14,10 @@ class Message extends React.Component {
         >{this.props.value}
 
         <button className="delete"
-          onClick={ () => {
-            this.props.delMessage(this.props.delKey);} }
+          onClick={ (e) => {
+            e.stopPropagation()
+            this.props.delMessage(this.props.delKey);
+          } }
           >X
         </button>
 

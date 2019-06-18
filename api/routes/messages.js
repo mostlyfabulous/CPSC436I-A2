@@ -13,6 +13,17 @@ router.get('/', function(req, res, next) {
   res.json(messages);
 });
 
+router.put('/', function(req, res, next) {
+  // console.log(messages);
+  // console.log(req.body.id);
+  let message = messages.find( (m) => {
+    // console.log(m.id);
+    return m.id === req.body.id.delKey
+  });
+  // console.log("this is the msg:" + JSON.stringify(message));
+  res.json(message);
+});
+
 router.post('/', function(req, res) {
   // console.log(req);
   if (req.body !== {}) {

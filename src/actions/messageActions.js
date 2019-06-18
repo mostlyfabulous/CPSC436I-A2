@@ -1,6 +1,7 @@
 export const FETCH_MESSAGES_BEGIN   = 'FETCH_MESSAGES_BEGIN';
 export const FETCH_MESSAGES_SUCCESS  = 'FETCH_MESSAGES_SUCCESS';
 export const FETCH_MESSAGES_FAILURE = 'FETCH_MESSAGES_FAILURE';
+export const FETCH_MESSAGES_DETAIL = 'FETCH_MESSAGES_DETAIL';
 
 export const fetchMessagesBegin = () => ({
   type: FETCH_MESSAGES_BEGIN
@@ -11,6 +12,11 @@ export const fetchMessagesSuccess = messagesAPI => ({
   payload: { messagesAPI }
 });
 
+export const fetchMessagesDetail = detailedMessage => ({
+  type: FETCH_MESSAGES_DETAIL,
+  payload: { detailedMessage }
+});
+
 export const fetchMessagesFailure = error => ({
   type: FETCH_MESSAGES_FAILURE,
   payload: { error }
@@ -18,7 +24,7 @@ export const fetchMessagesFailure = error => ({
 
 
 export function fetchMessages() {
-  console.log("fetching messages");
+  // console.log("fetching messages");
   return dispatch => {
     dispatch(fetchMessagesBegin());
     return fetch("http://localhost:5000/messages")
@@ -26,8 +32,30 @@ export function fetchMessages() {
       .then(res => res.json())
       .then(json => {
         dispatch(fetchMessagesSuccess(json));
-        console.log("success!");
-        console.log(json);
+        // console.log("success!");
+        // console.log(json);
+        return json;
+      })
+      .catch(error => dispatch(fetchMessagesFailure(error)));
+  };
+}
+
+export function selMessage(messageID) {
+  let msg = {"id": messageID};
+  // console.log("selecting message");
+  return dispatch => {
+    dispatch(fetchMessagesBegin());
+    return fetch("http://localhost:5000/messages", {
+      method: 'PUT',
+      headers: { 'Content-Type' : 'application/json' },
+      body: JSON.stringify(msg)
+    })
+      .then(handleErrors)
+      .then(res => res.json())
+      .then(json => {
+        dispatch(fetchMessagesDetail(json));
+        // console.log("success!");
+        // console.log(json);
         return json;
       })
       .catch(error => dispatch(fetchMessagesFailure(error)));
@@ -38,7 +66,7 @@ export function addMessage(message) {
   let msg = {"text": message};
   return dispatch => {
     dispatch(fetchMessagesBegin());
-    console.log("adding message text: " + message);
+    // console.log("adding message text: " + message);
     return fetch("http://localhost:5000/messages", {
       method: 'POST',
       headers: { 'Content-Type' : 'application/json' },
@@ -48,8 +76,8 @@ export function addMessage(message) {
       .then(res => res.json())
       .then(json => {
         dispatch(fetchMessagesSuccess(json));
-        console.log("success!");
-        console.log(json);
+        // console.log("success!");
+        // console.log(json);
         return json;
       })
       .catch(error => dispatch(fetchMessagesFailure(error)));
@@ -60,7 +88,7 @@ export function delMessage(messageID) {
   let msg = {"id": messageID};
   return dispatch => {
     dispatch(fetchMessagesBegin());
-    console.log("deleting message id: " + messageID);
+    // console.log("deleting message id: " + messageID);
     return fetch("http://localhost:5000/messages", {
       method: 'DELETE',
       headers: { 'Content-Type' : 'application/json' },
@@ -70,8 +98,8 @@ export function delMessage(messageID) {
       .then(res => res.json())
       .then(json => {
         dispatch(fetchMessagesSuccess(json));
-        console.log("success!");
-        console.log(json);
+        // console.log("success!");
+        // console.log(json);
         return json;
       })
       .catch(error => dispatch(fetchMessagesFailure(error)));
