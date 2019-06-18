@@ -106,6 +106,31 @@ export function delMessage(messageID) {
   };
 }
 
+export function sendReply(messageID, text) {
+  let msg = {
+    "id": messageID,
+    "text": text
+};
+  return dispatch => {
+    dispatch(fetchMessagesBegin());
+    // console.log("deleting message id: " + messageID);
+    return fetch("http://localhost:5000/messages/reply", {
+      method: 'POST',
+      headers: { 'Content-Type' : 'application/json' },
+      body: JSON.stringify(msg)
+    })
+      .then(handleErrors)
+      .then(res => res.json())
+      .then(json => {
+        dispatch(fetchMessagesSuccess(json));
+        // console.log("success!");
+        // console.log(json);
+        return json;
+      })
+      .catch(error => dispatch(fetchMessagesFailure(error)));
+  };
+}
+
 function handleErrors(response) {
   if(!response.ok) {
     throw Error(response.statusText)

@@ -37,10 +37,25 @@ const messageReducer = (messages = initialMessages, action) => {
   }
   return messages;
 }
+let replyState = {
+  messageId: null,
+  replyBoxVisible: false
+}
+const replyReducer = (reply = replyState, action) => {
+  if (action.type === 'MESSAGE_RPY') {
+    let newState = {
+      messageId: action.payload.messageId,
+      replyBoxVisible: action.payload.replyBoxVisible
+    }
+    return newState;
+  }
+  return reply;
+}
 
 export default combineReducers({
   count: counterReducer,
   messages: messageReducer,
   detailedMessage: detailedMessageReducer,
+  reply: replyReducer,
   messagesAPI: messageAPIReducer
 });

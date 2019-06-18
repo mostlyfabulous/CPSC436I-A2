@@ -24,6 +24,19 @@ router.put('/', function(req, res, next) {
   res.json(message);
 });
 
+router.post('/reply', function(req, res) {
+  // console.log(req);
+  if (req.body.text) {
+    newMessage = {
+      id: nextId++,
+      text: ("↪ " + req.body.text),
+      timestamp: JSON.stringify(new Date())
+    };
+    messages.splice(req.body.id, 0, newMessage)
+  }
+  res.json(messages);
+});
+
 router.post('/', function(req, res) {
   // console.log(req);
   if (req.body !== {}) {

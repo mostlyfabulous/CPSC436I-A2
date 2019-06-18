@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import ReplyBox from './ReplyBox';
 import MessageList from './MessageList';
 import AppendMessage from './ButtonAddMsg';
 import MessageDetail from './MessageDetail';
@@ -27,6 +28,23 @@ render() {
 
     </div>
   )
+  if (this.props.reply.replyBoxVisible) return (
+    <div className="App">
+      <div className="App-header">
+        <h2>Welcome to the Assignment 2<br></br>Message Board</h2>
+      </div>
+      <div id="container-div">
+        <AppendMessage/>
+        <MessageDetail message={detailedMessage} />
+      </div>
+      <div className="Messages">
+      <br/>
+        <ReplyBox/>
+        <MessageList messages={items}/>
+      </div>
+    </div>
+  )
+
   return (
     <div className="App">
       <div className="App-header">
@@ -49,6 +67,7 @@ const mapStateToProps = (state) => {
   return {
           messages: state.messages,
           // selectedMessage: state.detailedMessage,
+          reply: state.reply,
           items: state.messagesAPI.items,
           error: state.messagesAPI.error,
           loading: state.messagesAPI.loading,

@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-// import { selMessage } from '../actions';
+import { replyToMessage } from '../actions';
 import { selMessage, delMessage } from '../actions/messageActions';
 
 class Message extends React.Component {
@@ -20,6 +20,13 @@ class Message extends React.Component {
           } }
           >X
         </button>
+        <button className="reply"
+          onClick={ (e) => {
+            e.stopPropagation()
+            this.props.replyToMessage(this.props.delKey, true);
+          } }
+          >reply
+        </button>
 
       </li>
     </div>
@@ -30,4 +37,4 @@ const mapStateToProps = (state) => {
   return { messages: state.messages };
 }
 
-export default connect(mapStateToProps, {delMessage, selMessage})(Message);
+export default connect(mapStateToProps, {replyToMessage, delMessage, selMessage})(Message);

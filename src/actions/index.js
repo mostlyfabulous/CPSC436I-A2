@@ -30,3 +30,10 @@ export const selMessage = message => {
     payload: message
   }
 }
+
+export const replyToMessage = (messageId, replyBoxVisible) => {
+  return {
+    type: 'MESSAGE_RPY',
+    payload: {messageId, replyBoxVisible}
+  }
+}
