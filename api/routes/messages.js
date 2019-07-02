@@ -57,7 +57,7 @@ client.connect(err => {
     messages.find({id: req.body.id.delKey}).toArray(function(err, msg) {
       console.log(msg);
       assert.equal(err, null);
-      res.json(msg);
+      res.json(msg[0]);
     });;
     // console.log("this is the msg:" + JSON.stringify(message));
   });
