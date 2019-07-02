@@ -39,7 +39,6 @@ client.connect(err => {
   // collection.insertMany([
   // messages[0], messages[1], messages[2]
   // ]);
-  // client.close();
 
 // Get all messages
   router.get('/', function(req, res, next) {
@@ -115,6 +114,10 @@ client.connect(err => {
       res.json(req.body);
     }
     });
-
+  process.on('SIGINT', () => {
+    console.log("\nClosing MongoDB connection...");
+    client.close();
+    process.exit();
+  });
 });
 module.exports = router;
