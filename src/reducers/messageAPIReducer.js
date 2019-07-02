@@ -3,6 +3,7 @@ import {
   FETCH_MESSAGES_SUCCESS,
   FETCH_MESSAGES_DETAIL,
   FETCH_MESSAGES_FAILURE,
+  DELETE_MESSAGES_SUCCESS,
 } from '../actions/messageActions';
 
 const initialState = {
@@ -42,6 +43,14 @@ export default function messageAPIReducer(state = initialState, action) {
         loading: false,
         error: action.payload.error,
         items: state.messages
+      };
+    case DELETE_MESSAGES_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        items: state.items.filter( (msg) => {
+          return msg.id !== action.payload.deletedMessageID.id
+        })
       };
 
     default:

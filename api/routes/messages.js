@@ -2,6 +2,12 @@ var config = require('../../config.js');
 var assert = require('assert');
 var express = require('express');
 var router = express.Router();
+router.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, x-access-token');
+  res.header('Access-Control-Allow-Methods', 'GET, POST,OPTIONS, DELETE, PATCH, PUT');
+  next();
+});
 // DB connection driver
 const MongoClient = require('mongodb').MongoClient;
 const uri = "mongodb+srv://"+config.mongoUser+":"+config.mongopw+"@sandbox-ocgqf.mongodb.net/test?retryWrites=true&w=majority";
@@ -18,11 +24,11 @@ client.connect(err => {
   messages.find().sort({id:-1}).limit(1)
   .next(function(err, msg) {
     assert.equal(err, null);
-    console.log(msg.id);
+    console.log("Largest message ID: " + msg.id);
     nextId = msg.id;
   });
   // returns all the documents unlike in mongo shell which returns the largest message id
-  // messages.aggregate({ $group:{ _id: null, maxId:{ $max : "$id" }}}) 
+  // messages.aggregate({ $group:{ _id: null, maxId:{ $max : "$id" }}})
 
   // let messages = [
   //   {id: nextId++, text: "This is the first post", timestamp: new Date().toISOString()},
@@ -61,7 +67,7 @@ client.connect(err => {
     // console.log(req);
     if (req.body.text) {
       newMessage = {
-        id: nextId++,
+        id: ++nextId,
         text: ("↪ " + req.body.text),
         timestamp: new Date().toISOString()
       };
@@ -77,15 +83,13 @@ client.connect(err => {
   router.post('/', function(req, res) {
     // console.log(req.body);
     if (req.body !== {}) {
-      // console.log(JSON.stringify(nextId));
-      console.log("inserting with id:"+nextId);
       newMessage = {
-        id: nextId++,
+        id: ++nextId,
         text: req.body.text,
         timestamp: new Date().toISOString()
       };
       console.log(newMessage);
-      messages.insert(newMessage);
+      messages.insertOne(newMessage);
       messages.find().toArray(function(err, msgs) {
         assert.equal(err, null);
         res.json(msgs);
@@ -94,12 +98,23 @@ client.connect(err => {
   });
   // Delete a message
   router.delete('/', function(req, res) {
-
+    console.log("deleting message");
     // messages = messages.filter( ({ id }) => id !== req.body.id);
-    messages.find().toArray(function(err, msgs) {
-      assert.equal(err, null);
-      res.json(msgs);
+    try {
+      messages.deleteOne({id: req.body.id}), function(err, msgs) {
+        // assert.equal(err, null);
+        console.log("callback of deleteOne");
+        console.log(err);
+        console.log(msgs);
+        assert.equal(1, msgs.result.n);
+        res.json(req.body);
+        };
+    } catch (e) {
+      console.log(e);
+    } finally {
+      res.json(req.body);
+    }
     });
-  });
+
 });
 module.exports = router;

@@ -2,6 +2,7 @@ export const FETCH_MESSAGES_BEGIN   = 'FETCH_MESSAGES_BEGIN';
 export const FETCH_MESSAGES_SUCCESS  = 'FETCH_MESSAGES_SUCCESS';
 export const FETCH_MESSAGES_FAILURE = 'FETCH_MESSAGES_FAILURE';
 export const FETCH_MESSAGES_DETAIL = 'FETCH_MESSAGES_DETAIL';
+export const DELETE_MESSAGES_SUCCESS  = 'DELETE_MESSAGES_SUCCESS';
 
 export const fetchMessagesBegin = () => ({
   type: FETCH_MESSAGES_BEGIN
@@ -20,6 +21,11 @@ export const fetchMessagesDetail = detailedMessage => ({
 export const fetchMessagesFailure = error => ({
   type: FETCH_MESSAGES_FAILURE,
   payload: { error }
+});
+
+export const deleteMessagesSuccess = deletedMessageID => ({
+  type: DELETE_MESSAGES_SUCCESS,
+  payload: { deletedMessageID }
 });
 
 
@@ -97,7 +103,7 @@ export function delMessage(messageID) {
       .then(handleErrors)
       .then(res => res.json())
       .then(json => {
-        dispatch(fetchMessagesSuccess(json));
+        dispatch(deleteMessagesSuccess(json));
         // console.log("success!");
         // console.log(json);
         return json;
