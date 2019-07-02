@@ -50,16 +50,16 @@ client.connect(err => {
     });
     // res.json(messages.find());
   });
-
+// Detailed message request
   router.put('/', function(req, res, next) {
     // console.log(messages);
     // console.log(req.body.id);
-    let message = messages.find({id: req.body.id.delKey});
-    // console.log("this is the msg:" + JSON.stringify(message));
-    message.toArray(function(err, msg) {
+    messages.find({id: req.body.id.delKey}).toArray(function(err, msg) {
+      console.log(msg);
       assert.equal(err, null);
-      res.json(message);
-    });
+      res.json(msg);
+    });;
+    // console.log("this is the msg:" + JSON.stringify(message));
   });
   // Reply to a message
   // TODO: Integrate DB storage and reply feature
