@@ -17,6 +17,6 @@
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
-  "proxy": "process.env.PORT"
+  "proxy": "https://basic-message-board.herokuapp.com/"
 
 }
