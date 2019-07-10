@@ -34,7 +34,7 @@ export function fetchMessages() {
   // console.log("fetching messages");
   return dispatch => {
     dispatch(fetchMessagesBegin());
-    return fetch(URL)
+    return fetch(URL + "messages")
       .then(handleErrors)
       .then(res => res.json())
       .then(json => {
