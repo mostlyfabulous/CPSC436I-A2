@@ -1,0 +1,142 @@
+/* Themes—Generated from https://coolors.co/c5d86d-261c15-f7f7f2-e4e6c3-f05d23
+June Bud #C5D86D
+Eerie Black #261C15
+White Smoke #F7F7F2
+Pearl #E4E6C3
+Vivide Vermillion #F05D23
+https://coolors.co/594157-726da8-7d8cc4-a0d2db-bee7e8
+*/
+
+#container-div {
+  border: 1px solid #261C15;
+  background-color: #E4E6C3;
+  padding: 0.3rem;
+}
+
+h1 {
+  border: 1px solid #261C15;
+  background-color: #E4E6C3;
+  text-align: center;
+  padding: 0.5rem;
+}
+
+h2 {
+  border: 1px solid #261C15;
+  border-style: inset;
+  border-radius: 3px;
+  background-color: #E4E6C3;
+  text-align: center;
+  padding: 0.5rem;
+}
+
+body {
+  margin: auto;
+  width: 90%;
+  background-color: darkcyan;
+  font-family: Palatino, Verdana, sans-serif;
+  position: center;
+}
+
+img {
+  position: relative;
+  width: 50%;
+  z-index: 1;
+}
+
+input {
+  display: block;
+  padding: 0.2rem;
+  background-color: #F7F7F2;
+}
+
+#message {
+  display: block;
+  margin: auto;
+  padding: 0.2rem;
+  width: 95%;
+  height: 3rem;
+  resize: none;
+}
+
+a:link {
+  text-decoration: none;
+  color: #261C15;
+}
+
+a:link:hover{
+  opacity: 0.2;
+  transition: opacity 0.4s;
+}
+
+.nav {
+  font-size: 0.8rem;
+  font-weight: bold;
+  font-family: Palatino, Verdana, sans-serif;
+  margin-top: 0.8rem;
+  background-color: #F05D23;
+  width: 20%
+}
+
+.Messages ul{
+  border: 1px solid #261C15;
+  list-style-type: none;
+  background-color: #E4E6C3;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  /* padding-inline-start: 0px; */
+}
+
+.Messages li{
+  margin-top: 0.1rem;
+  margin-bottom: 0.1rem;
+  padding: 0.5rem;
+
+  background-color: #F7F7F2;
+  border-width: 1px;
+  border-color: #261C15;
+  border-style: inset;
+  border-radius: 5px;
+  width: 90%;
+}
+
+.delete {
+  color: red;
+  font-weight: bolder;
+  opacity: 0.6;
+  float: right;
+}
+
+.reply {
+  color: gray;
+  opacity: 0.6;
+  float: right;
+}
+
+table, th, td {
+  border: 1px solid #261C15;
+  border-collapse: collapse;
+  border-spacing: 0.3rem;
+  padding: 0.3rem;
+  background-color: #F7F7F2;
+  text-align: center;
+}
+
+/* Keeps width of columns even
+th, td {
+  width: 33%
+} */
+
+tr {
+  height: 2rem;
+}
+
+table {
+  margin: auto;
+  width: 95%;
+}
+
+li:hover {
+  background-color: #C5D86D;
+  opacity: 0.6;
+  transition: opacity 0.4s;
+}
