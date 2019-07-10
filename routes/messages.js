@@ -10,7 +10,7 @@ router.use((req, res, next) => {
 });
 // DB connection driver
 const MongoClient = require('mongodb').MongoClient;
-const uri = "mongodb+srv://"+config.mongoUser+":"+config.mongopw+"@sandbox-ocgqf.mongodb.net/test?retryWrites=true&w=majority";
+const uri = "mongodb+srv://"+process.env.MONGO_USER+":"+process.env.MONGO_PW+"@sandbox-ocgqf.mongodb.net/test?retryWrites=true&w=majority";
 const client = new MongoClient(uri, { useNewUrlParser: true });
 let dbConnected = false;
 
