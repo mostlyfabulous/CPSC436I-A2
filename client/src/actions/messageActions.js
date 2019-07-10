@@ -1,3 +1,4 @@
+const URL = "https://basic-message-board.herokuapp.com/";
 export const FETCH_MESSAGES_BEGIN   = 'FETCH_MESSAGES_BEGIN';
 export const FETCH_MESSAGES_SUCCESS  = 'FETCH_MESSAGES_SUCCESS';
 export const FETCH_MESSAGES_FAILURE = 'FETCH_MESSAGES_FAILURE';
@@ -33,7 +34,7 @@ export function fetchMessages() {
   // console.log("fetching messages");
   return dispatch => {
     dispatch(fetchMessagesBegin());
-    return fetch("http://localhost:5000/messages")
+    return fetch(URL)
       .then(handleErrors)
       .then(res => res.json())
       .then(json => {
@@ -51,7 +52,7 @@ export function selMessage(messageID) {
   // console.log("selecting message");
   return dispatch => {
     dispatch(fetchMessagesBegin());
-    return fetch("http://localhost:5000/messages", {
+    return fetch(URL + "messages", {
       method: 'PUT',
       headers: { 'Content-Type' : 'application/json' },
       body: JSON.stringify(msg)
@@ -73,7 +74,7 @@ export function addMessage(message) {
   return dispatch => {
     dispatch(fetchMessagesBegin());
     // console.log("adding message text: " + message);
-    return fetch("http://localhost:5000/messages", {
+    return fetch(URL + "messages", {
       method: 'POST',
       headers: { 'Content-Type' : 'application/json' },
       body: JSON.stringify(msg)
@@ -95,7 +96,7 @@ export function delMessage(messageID) {
   return dispatch => {
     dispatch(fetchMessagesBegin());
     // console.log("deleting message id: " + messageID);
-    return fetch("http://localhost:5000/messages", {
+    return fetch(URL + "messages", {
       method: 'DELETE',
       headers: { 'Content-Type' : 'application/json' },
       body: JSON.stringify(msg)
@@ -120,7 +121,7 @@ export function sendReply(messageID, text) {
   return dispatch => {
     dispatch(fetchMessagesBegin());
     // console.log("deleting message id: " + messageID);
-    return fetch("http://localhost:5000/messages/reply", {
+    return fetch(URL + "reply", {
       method: 'POST',
       headers: { 'Content-Type' : 'application/json' },
       body: JSON.stringify(msg)
