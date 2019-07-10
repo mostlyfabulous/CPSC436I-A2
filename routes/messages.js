@@ -1,4 +1,4 @@
-var config = require('../config.js');
+// var config = require('../config.js');
 var assert = require('assert');
 var express = require('express');
 var router = express.Router();
