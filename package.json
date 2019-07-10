@@ -1,5 +1,5 @@
 {
-  "name": "api",
+  "name": "message-server",
   "version": "0.0.0",
   "private": true,
   "scripts": {
@@ -14,5 +14,9 @@
     "jade": "~1.11.0",
     "mongo": "^0.1.0",
     "morgan": "~1.9.1"
+  },
+  "scripts": {
+    "start": "node app.js",
+    "heroku-postbuild": "cd client && npm install --only=dev && npm install && npm run build"
   }
 }
