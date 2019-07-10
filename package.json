@@ -16,7 +16,7 @@
     "morgan": "~1.9.1"
   },
   "scripts": {
-    "start": "node app.js",
+    "start": "node bin/www.js",
     "heroku-postbuild": "cd client && npm install --only=dev && npm install && npm run build"
   }
 }
