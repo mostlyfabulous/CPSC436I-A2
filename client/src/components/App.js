@@ -31,7 +31,7 @@ render() {
   if (this.props.reply.replyBoxVisible) return (
     <div className="App">
       <div className="App-header">
-        <h2>Welcome to the Assignment 2<br></br>Message Board</h2>
+        <h2>Welcome to a MERN stack<br></br>Message Board</h2>
       </div>
       <div id="container-div">
         <AppendMessage/>
